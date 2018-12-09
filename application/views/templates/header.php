@@ -22,13 +22,13 @@
                     <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>posts">Posts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url(); ?>/about">About</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>about">About</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -38,3 +38,5 @@
         </div>
     </nav>
 </div>
+
+<div class="container" id="content">
