@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
-        $this->load->library('javascript');
+//        $this->load->library('javascript');
 
     }
 }
