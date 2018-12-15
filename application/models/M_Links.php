@@ -19,9 +19,14 @@ class M_Links extends CI_Model {
         //todo: how to set userId
     }
 
-    public function getLinks(){
+    public function getLinks($userId = 0){
         $this->db->order_by('id', 'DESC');
-        $query = $this->db->get('links');
+
+        if ($userId !== 0) {
+            $query = $this->db->get('links', ['userId' => $userId]);
+        } else {
+            $query = $this->db->get('links');
+        }
         return $query->result_array();
     }
 
