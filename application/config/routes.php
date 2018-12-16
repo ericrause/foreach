@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['signup']            = 'login/showSignup';
-$route['login']             = 'login/showLogin';
+$route['signup']            = 'auth/showSignUp';
+$route['login']             = 'auth/showLogin';
 $route['links']             = 'links/showLinks';
 $route['links/addLink']     = 'links/addLink';
 $route['links/deleteLink']  = 'links/deleteLink';

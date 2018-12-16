@@ -8,8 +8,9 @@
 
 class Links extends  CI_Controller {
     public function showLinks(){
-        $data['userId'] = 0;//how to get userId ?
-        $data['links']  = $this->M_Links->getLinks();
+        session_start();
+        $userId = $_SESSION['userId'] ?? 0;
+        $data['links']  = $this->M_Links->getLinks($userId);
 
 
         $this->load->view('templates/header');

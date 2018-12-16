@@ -6,7 +6,7 @@
  * Time: 15:41
  */
 
-class M_Login extends CI_Model {
+class M_Auth extends CI_Model {
     public function __construct() {
         $this->load->database();
     }
@@ -17,7 +17,7 @@ class M_Login extends CI_Model {
 //        $query = $this->db->get('users', ['email' => $email]);
 //        if ($query->result_array() !== []) {
             $query = $this->db->get('users', ['email' => $email, 'password' => md5($password)]);
-            $data = $query->result_array();
+            $data = $query->row_array();
             if ($data !== []) {
                 return $data['id'];
             }
@@ -25,9 +25,9 @@ class M_Login extends CI_Model {
         return 0;
     }
 
-    public function deleteLink($id) {
-        $this->db->where('id', $id);
-        $this->db->delete('links');
-        return true;
+
+
+    public function signUp($email, $password) {
+        $this->db->insert('users', ['email' => $email, 'password' => md5($password)]);
     }
 }

@@ -25,15 +25,15 @@ foreach ($links as $link) :
     ?>
 
     <div class="card border-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header"><?php echo $link['title'] ?></div>
+        <div class="card-header"><?php echo html_escape($link['title']) ?></div>
         <div class="card-body">
 <!--            <h4 class="card-title">something here</h4>-->
-            <p class="card-text"><?php echo $link['description'] ?></p>
+            <p class="card-text"><?php echo html_escape($link['description']) ?></p>
             <div class="form-group">
-                <a role="button" href="<?php echo $link['url'] ?>">Read</a>
+                <a role="button" href="<?php echo html_escape($link['url']) ?>">Read</a>
                 <a role="button" href="">Edit</a>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="url" value="<?php echo $link['url'] ?>">
+                    <input type="text" class="form-control" placeholder="url" value="<?php echo html_escape($link['url']) ?>">
                     <div class="input-group-append">
                         <input type="submit" value="delete" class="btn btn-danger">
                     </div>

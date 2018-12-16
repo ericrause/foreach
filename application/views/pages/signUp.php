@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-5" style="float: none; margin: 0 auto;">
+        <h2 align="center">Sign Up</h2>
 
-        <h2 align="center">Login</h2>
 
-        <?php echo form_open('auth/authentication', ['method' => 'post']);
+        <?php echo form_open('auth/signup', ['method' => 'post']);
         ?>
         <div class="form-group">
             <label for="email">Email address</label>
@@ -16,9 +16,12 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password">
         </div>
+<!--        <div class="form-group">-->
+<!--            <label for="password">Password</label>-->
+<!--            <input type="password" class="form-control" name="password2" placeholder="Password">-->
+<!--        </div>-->
 
         <input type="submit" value="login" class="btn btn-success">
-
 
 <?php
 if ($msg !== '') {
@@ -43,7 +46,5 @@ if ($msg !== '') {
 }
 ?>
 
-
     </div>
 </div>
-

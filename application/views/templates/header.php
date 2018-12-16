@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Welcome to CodeIgniter</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css" />
+    <title>RSS READER</title>
+    <link rel="stylesheet" href="/bootstrap/css/theme.css" />
     <script src="/application/jQuery/jQuery.js"></script>
 </head>
 <body>
-
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
@@ -32,8 +31,14 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
-                    <a class="nav-link" href="<?php echo base_url(); ?>login" >login</a>
-                    <a class="nav-link" href="<?php echo base_url(); ?>signup" >sign up</a>
+                <?php
+                if (($_SESSION['active'] ?? false) === true) {
+                    echo '<a class="nav-link" href="'. base_url().'logout" >logout</a>';
+                } else {
+                ?>
+                <a class="nav-link" href="<?php echo base_url(); ?>login" >login</a>
+                <a class="nav-link" href="<?php echo base_url(); ?>signup" >sign up</a>
+                <?php } ?>
             </ul>
 
 
