@@ -11,7 +11,7 @@ class M_Parser extends CI_Model {
         $this->load->database();
     }
 
-    public function getPosts($rss){
+    public function getContent($rss){
         $data = [];
         $xml = @simplexml_load_string(file_get_contents($rss));
         if ($xml === false) {

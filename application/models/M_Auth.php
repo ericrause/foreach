@@ -16,10 +16,13 @@ class M_Auth extends CI_Model {
     public function authenticate($email, $password) {
 //        $query = $this->db->get('users', ['email' => $email]);
 //        if ($query->result_array() !== []) {
-            $query = $this->db->get('users', ['email' => $email, 'password' => md5($password)]);
-            $data = $query->row_array();
+            $this->db->where('email', $email);
+            $this->db->where('password', md5($password));
+            $query = $this->db->get('users');
+
+        $data = $query->row_array();
             if ($data !== []) {
-                return $data['id'];
+                return (int) $data['id'];
             }
 //        }
         return 0;

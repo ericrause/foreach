@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['signup']            = 'auth/showSignUp';
 $route['login']             = 'auth/showLogin';
+$route['logout']             = 'auth/logout';
 $route['links']             = 'links/showLinks';
 $route['links/addLink']     = 'links/addLink';
 $route['links/deleteLink']  = 'links/deleteLink';

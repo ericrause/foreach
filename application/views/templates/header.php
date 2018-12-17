@@ -10,7 +10,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-        <a class="navbar-brand" href="#">RSS READER</a>
+        <a class="navbar-brand">RSS READER</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,20 +24,23 @@
                     <a class="nav-link" href="<?php echo base_url(); ?>posts">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url(); ?>links/addLink">addLink</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>links/addLink">Add Link</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url(); ?>links">links</a>
+                    <a class="nav-link" href="<?php echo base_url(); ?>links">Show links</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 <?php
                 if (($_SESSION['active'] ?? false) === true) {
-                    echo '<a class="nav-link" href="'. base_url().'logout" >logout</a>';
+                    echo '<li class="nav-item">';
+                    echo 'hello, '.$_SESSION['username'];
+                    echo '<a class="nav-link" href="'. base_url().'logout" >Logout</a>';
+                    echo '</li>';
                 } else {
                 ?>
-                <a class="nav-link" href="<?php echo base_url(); ?>login" >login</a>
-                <a class="nav-link" href="<?php echo base_url(); ?>signup" >sign up</a>
+                <a class="nav-link" href="<?php echo base_url(); ?>login" >Login</a>
+                <a class="nav-link" href="<?php echo base_url(); ?>signup" >Sign up</a>
                 <?php } ?>
             </ul>
 

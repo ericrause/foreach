@@ -47,12 +47,23 @@ class Auth extends CI_Controller {
         $password = $_POST['password'] ?? '';
         $authId   = $this->M_Auth->authenticate($email, $password);
         if($authId > 0) {
-            $this->showLogin('this email is already registered','danger');
+            $this->showSignUp('this email is already registered','danger');
         } else {
             $this->M_Auth->signUp($email, $password);
             $this->showLogin('now you can authorise with your email/password','success');
 
         }
+    }
+
+    public function logout() {
+        session_start();
+
+        $_SESSION['active']   = false;
+        $_SESSION['timeout']  = time();
+        $_SESSION['username'] = '';
+        $_SESSION['userId']   = 0;
+        session_abort();
+        redirect('home');
     }
 
 

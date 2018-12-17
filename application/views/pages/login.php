@@ -17,7 +17,7 @@
             <input type="password" class="form-control" name="password" placeholder="Password">
         </div>
 
-        <input type="submit" value="login" class="btn btn-success">
+        <input type="submit" value="login" class="btn btn-success btn-block">
 
 
 <?php

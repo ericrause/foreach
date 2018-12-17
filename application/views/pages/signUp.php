@@ -21,7 +21,7 @@
 <!--            <input type="password" class="form-control" name="password2" placeholder="Password">-->
 <!--        </div>-->
 
-        <input type="submit" value="login" class="btn btn-success">
+        <input type="submit" value="Sign Up" class="btn btn-success btn-block">
 
 <?php
 if ($msg !== '') {

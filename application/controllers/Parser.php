@@ -8,7 +8,7 @@
 
 class Parser extends  CI_Controller {
     public function getRss($rss){
-        return $this->M_Parser->getPosts($rss);
+        return $this->M_Parser->getContent($rss);
 
     }
 

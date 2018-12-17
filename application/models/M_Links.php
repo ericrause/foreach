@@ -11,10 +11,10 @@ class M_Links extends CI_Model {
         $this->load->database();
     }
 
-    public function addLink(){
+    public function addLink($userId) {
         $dataArr = explode(PHP_EOL,$this->input->post('urls'));
         foreach ($dataArr as $item) {
-            $this->db->insert('links', ['url' => $item]);
+            $this->db->insert('links', ['url' => $item, 'userId' => $userId]);
         }
         //todo: how to set userId
     }
@@ -24,6 +24,14 @@ class M_Links extends CI_Model {
 
         $query = $this->db->get('links');
         return $query->result_array();
+    }
+
+    public function updateLinkDT($linkId) {
+        $this->db->where('id', $linkId);
+//        $this->db->update('links', ['updatedDT', time()]);
+//        $this->db->query("UPDATE links SET updatedDT = date('Y-m-d H:i:s','".time()."') WHERE id = ".$linkId);
+        $this->db->query("UPDATE links SET updatedDT = FROM_UNIXTIME('".time()."') WHERE id = ".$linkId);
+        return true;
     }
 
     public function deleteLink($id) {
