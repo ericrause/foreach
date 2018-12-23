@@ -24,7 +24,7 @@
         <input type="submit" value="Sign Up" class="btn btn-success btn-block">
 
 <?php
-if ($msg !== '') {
+if (isset($msg) &&$msg !== '') {
     echo '
         <script type="text/javascript">
         $( document ).ready(function() {

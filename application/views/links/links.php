@@ -1,16 +1,25 @@
-<?php //foreach ($links as $link) :
-//    form_open('links/delete/'.$link['id'])
-//    ?>
-<!--    <div class="form-group">-->
-<!--        <div class="input-group mb-3">-->
-<!--            <input type="text" class="form-control" placeholder="url" value="--><?php //echo $link['url'] ?><!--">-->
-<!--            <div class="input-group-append">-->
-<!--                <input type="submit" value="delete" class="btn btn-danger">-->
-<!--                <a role="button" class="btn btn-danger" href="--><?php //echo site_url('/posts/' . $link['id']); ?><!--">delete</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<?php //endforeach; ?>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
 <?php
@@ -21,7 +30,6 @@ foreach ($links as $link) :
         echo '</div><div class="row mt-4">';
     }
     echo '<div class ="col-md-4">';
-   // echo form_open('links/deleteLink/' . $link['id'])
     ?>
 
     <div class="card border-primary mb-3" style="max-width: 20rem;">
@@ -30,8 +38,16 @@ foreach ($links as $link) :
 <!--            <h4 class="card-title">something here</h4>-->
             <p class="card-text"><?php echo html_escape($link['description']) ?></p>
             <div class="form-group">
-                <a role="button" href="<?php echo html_escape($link['url']) ?>">Read</a>
-                <a role="button" href="#" class="editBtn">Edit</a>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+                    Edit
+                </button>
+
+
+
+
+
+
+
                 <div class='editForm'>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="url"
@@ -52,10 +68,7 @@ foreach ($links as $link) :
 
 
     <?php
-    //echo form_close();
     $counter++;
-    if ($counter % 3 === 0){ //todo: move "3" to setting menu -> choose grid
-    }
     echo '</div>';
 endforeach; ?>
 </div>

@@ -9,7 +9,8 @@
 class Posts extends  CI_Controller {
     public function index() {
         session_start();
-        $userId = $_SESSION['userId'] ?? 0;
+        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+
         $this->M_Deamon->updateNews($userId);
 
         $data['title'] = 'Latests posts';

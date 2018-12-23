@@ -33,10 +33,10 @@ class M_Deamon extends CI_Model {
     }
 
     public function savePost($post, $userId, $linkId) {
-        $title       = $post['title']       ?? '';
-        $description = $post['description'] ?? '';
-        $link        = $post['link']        ?? '';
-        $pubDate     = $post['pubDate']     ?? '';
+        $title       = $post['title']       ;
+        $description = $post['description'] ;
+        $link        = $post['link']        ;
+        $pubDate     = $post['pubDate']     ;
         $this->M_Posts->insertPost($userId, $linkId, $title, $description, $link, $pubDate);
         $this->M_Links->updateLinkDT($linkId);
     }
@@ -44,7 +44,7 @@ class M_Deamon extends CI_Model {
     public function updateNews($userId){
         $links = $this->M_Links->getLinks($userId);
         foreach ($links as $link) {
-            $updatedDT = strtotime($link['updatedDT'] ?? 0);
+            $updatedDT = strtotime($link['updatedDT']);
             $timeNow = time() + 10800;
             if ( $timeNow - $updatedDT > 300) {
                 $this->downloadNews($userId, $link['url'], $link['id']);

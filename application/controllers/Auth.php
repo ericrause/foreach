@@ -8,7 +8,7 @@
 
 class Auth extends CI_Controller {
     public function showLogin($msg = '', $msgType = '') {
-        $data['msg'] = $msg;
+        $data['msg']     = $msg;
         $data['msgType'] = $msgType;
 
         $this->load->view('templates/header');
@@ -27,8 +27,8 @@ class Auth extends CI_Controller {
 
     public function authentication() {
         session_start();
-        $email    = $_POST['email']    ?? '';
-        $password = $_POST['password'] ?? '';
+        $email    = isset($_POST['email']) ? $_POST['email'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
         $authId   = $this->M_Auth->authenticate($email, $password);
         if($authId > 0) {
             $_SESSION['active']   = true;
@@ -42,14 +42,14 @@ class Auth extends CI_Controller {
     }
 
 
-    public function signUp() {
-        $email    = $_POST['email']    ?? '';
-        $password = $_POST['password'] ?? '';
+    public function signup() {
+        $email    = isset($_POST['email']) ? $_POST['email'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
         $authId   = $this->M_Auth->authenticate($email, $password);
         if($authId > 0) {
             $this->showSignUp('this email is already registered','danger');
         } else {
-            $this->M_Auth->signUp($email, $password);
+            $this->M_Auth->signup($email, $password);
             $this->showLogin('now you can authorise with your email/password','success');
 
         }

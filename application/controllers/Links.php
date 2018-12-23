@@ -9,7 +9,7 @@
 class Links extends  CI_Controller {
     public function showLinks(){
         session_start();
-        $userId = $_SESSION['userId'] ?? 0;
+        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
         $data['links']  = $this->M_Links->getLinks($userId);
 
 
@@ -21,7 +21,7 @@ class Links extends  CI_Controller {
     public function addLink() {
         session_start();
         $data['title'] = 'Add link';
-        $userId = $_SESSION['userId'] ?? 0;
+        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
 
         $this->form_validation->set_rules('urls', 'Urls', 'required');
 
@@ -41,7 +41,8 @@ class Links extends  CI_Controller {
     public function editLink() {
         session_start();
         $data['title'] = 'Add link';
-        $userId = $_SESSION['userId'] ?? 0;
+        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+
 
         $this->form_validation->set_rules('url', 'Url', 'required');
         $this->form_validation->set_rules('title', 'Title', 'required');
