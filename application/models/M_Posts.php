@@ -10,27 +10,25 @@ class M_Posts extends CI_Model {
     public function __construct() {
 //        $this->load->database();
     }
-    public function getPosts() {
-        $userId = $_SESSION['userId'];
+    public function getPosts($limit, $start, $urlId = 0) {
+        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
 
-        $this->db->order_by('id', 'DESC');
+
+        $this->db->limit($limit, $start);
+//        $this->db->order_by('id', 'DESC');
         $this->db->where('userId', $userId);
+
+        if ($urlId > 0) {
+            $this->db->where('urlId', $urlId);
+        }
         $query = $this->db->get('posts');
 
-//        $query = $this->db->query("
-//          SELECT p.*, l.url
-//          FROM posts p
-//          JOIN links l ON l.id = p.urlId
-//          WHERE p.userId = $userId AND l.userId = $userId
-//          ORDER BY p.id DESC");
 
         return $query->result_array();
 
     }
 
     public function insertPost($userId, $urlId, $title, $description, $link, $pubDate) {
-
-
         $this->db->insert('posts', [
             'userId'      => $userId,
             'urlId'       => $urlId,
@@ -39,6 +37,20 @@ class M_Posts extends CI_Model {
             'link'        => $link,
             'pubDate'     => $pubDate,
         ]);
+    }
+
+
+    public function deletePosts($id) {
+        $this->db->where('urlId', $id);
+        $this->db->delete('posts');
+        return true;
+    }
+
+    public function record_count($userId) {
+        $this->db->where('userId', $userId);
+
+        return $this->db->count_all('posts');
 
     }
+
 }

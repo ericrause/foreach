@@ -1,5 +1,5 @@
 
-
+<h2><?=$title?></h2>
 <?php
 if ($posts === []) {
     ?>
@@ -14,8 +14,7 @@ if ($posts === []) {
     foreach ($posts as $post) : ?>
 
         <div class="bs-component">
-            <div class="jumbotron">
-                <!--        <span class="display-4">--><?php //echo $post['title'] ?><!--</span>-->
+            <div class="jumbotron" style="padding: 1rem">
                 <h3><?php echo $post['title'] ?></h3>
                 <hr class="my-4">
                 <p class="lead"><?php echo $post['description'] ?></p>
@@ -27,3 +26,11 @@ if ($posts === []) {
     <?php endforeach;
 }
 ?>
+
+<div class="row">
+    <div class="col-md-5" style="float: none; margin: 0 auto;align-items: center;justify-content: space-around;display: flex;">
+        <ul class="pagination">
+            <?php echo $links; ?>
+        </ul>
+    </div>
+</div>

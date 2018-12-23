@@ -12,18 +12,32 @@ class M_Links extends CI_Model {
     }
 
     public function addLink($userId) {
-        $dataArr = explode(PHP_EOL,$this->input->post('urls'));
+        $dataArr = explode(PHP_EOL, $this->input->post('urls'));
         foreach ($dataArr as $item) {
-            $this->db->insert('links', ['url' => $item, 'userId' => $userId]);
+            if (preg_match('#((https?|http)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i', $item) > 0) {
+
+                preg_match('/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/', $item, $url);
+                $title = isset($url[1]) ? $url[1] : $url[0];
+                $this->db->insert('links', [
+                    'url'    => $item,
+                    'title'  => $title,
+                    'userId' => $userId
+                ]);
+            }
+
         }
-        //todo: how to set userId
     }
 
     public function getLinks($userId = 0) {
         $this->db->order_by('id', 'DESC')->where('userId', $userId);
-
         $query = $this->db->get('links');
         return $query->result_array();
+    }
+
+    public function getLink($urlId) {
+        $this->db->where('id', $urlId);
+        $query = $this->db->get('links');
+        return $query->row_array();
     }
 
     public function updateLinkDT($linkId) {

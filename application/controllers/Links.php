@@ -9,7 +9,7 @@
 class Links extends  CI_Controller {
     public function showLinks(){
         session_start();
-        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        $userId         = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
         $data['links']  = $this->M_Links->getLinks($userId);
 
 
@@ -21,7 +21,7 @@ class Links extends  CI_Controller {
     public function addLink() {
         session_start();
         $data['title'] = 'Add link';
-        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        $userId        = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
 
         $this->form_validation->set_rules('urls', 'Urls', 'required');
 
@@ -40,8 +40,8 @@ class Links extends  CI_Controller {
 
     public function editLink() {
         session_start();
-        $data['title'] = 'Add link';
-        $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        $data['title'] = 'Edit link';
+        $userId        = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
 
 
         $this->form_validation->set_rules('url', 'Url', 'required');
@@ -59,8 +59,10 @@ class Links extends  CI_Controller {
         }
     }
 
-    public function deleteLink($id){
+    public function deleteLink(){
+        $id = isset($_POST['id']) ? $_POST['id'] : 0;
         $this->M_Links->deleteLink($id);
+        $this->M_Posts->deletePosts($id);
         redirect('links');
     }
 }
