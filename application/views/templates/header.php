@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>RSS READER</title>
-    <link rel="stylesheet" href="/bootstrap/css/<?=$_SESSION['template'];?>.css"/>
+    <link rel="stylesheet" href="/bootstrap/css/<?=isset($_SESSION['template']) ?$_SESSION['template'] : 'Dark';?>.css"/>
     <script src="/application/jQuery/jQuery.js"></script>
     <script src="/bootstrap/js/bootstrap.js"></script>
 </head>
