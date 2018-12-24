@@ -10,6 +10,9 @@ class Links extends  CI_Controller {
     public function showLinks(){
         session_start();
         $userId         = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        if ($userId === 0) {
+            show_404();
+        }
         $data['links']  = $this->M_Links->getLinks($userId);
 
 
@@ -20,8 +23,11 @@ class Links extends  CI_Controller {
 
     public function addLink() {
         session_start();
-        $data['title'] = 'Add link';
         $userId        = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        if ($userId === 0) {
+            show_404();
+        }
+        $data['title'] = 'Add link';
 
         $this->form_validation->set_rules('urls', 'Urls', 'required');
 

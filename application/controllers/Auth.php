@@ -27,8 +27,15 @@ class Auth extends CI_Controller {
 
     public function authentication() {
         session_start();
+        $_SESSION['userId'] = 0;
         $email    = isset($_POST['email']) ? $_POST['email'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+        if ($email === '' || $password === '') {
+            $this->showLogin('Please fill all fields','danger');
+            return;
+        }
+
         $authId   = $this->M_Auth->authenticate($email, $password);
         if($authId > 0) {
             $_SESSION['active']   = true;
@@ -43,14 +50,23 @@ class Auth extends CI_Controller {
 
 
     public function signup() {
+        session_start();
+        $_SESSION['userId'] = 0;
         $email    = isset($_POST['email']) ? $_POST['email'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
+        if ($email === '' || $password === '') {
+            $this->showSignUp('Please fill all fields','danger');
+            return;
+        }
+
         $authId   = $this->M_Auth->authenticate($email, $password);
         if($authId > 0) {
-            $this->showSignUp('this email is already registered','danger');
+            $this->showSignUp('This email is already registered','danger');
+            return;
         } else {
             $this->M_Auth->signup($email, $password);
-            $this->showLogin('now you can authorise with your email/password','success');
+            $this->showLogin('Now you can authorise with your email/password','success');
+            return;
 
         }
     }
@@ -65,6 +81,4 @@ class Auth extends CI_Controller {
         session_abort();
         redirect('home');
     }
-
-
 }

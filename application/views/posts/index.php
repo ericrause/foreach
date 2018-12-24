@@ -23,9 +23,7 @@ if ($posts === []) {
                 </p>
             </div>
         </div>
-    <?php endforeach;
-}
-?>
+    <?php endforeach; ?>
 
 <div class="row">
     <div class="col-md-5" style="float: none; margin: 0 auto;align-items: center;justify-content: space-around;display: flex;">
@@ -34,3 +32,5 @@ if ($posts === []) {
         </ul>
     </div>
 </div>
+<?php }
+?>

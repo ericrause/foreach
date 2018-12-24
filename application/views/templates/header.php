@@ -20,12 +20,11 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <?php
-                if ((isset($_SESSION['active']) ? $_SESSION['active'] : false) === false) {
-                    echo '<li class="nav-item active">';
-                    echo '<a class="nav-link" href="';
+                if ((isset($_SESSION['userId']) ? $_SESSION['userId'] : 0) === 0) {
+                    echo '<li class="nav-item"><a class="nav-link" href="';
                     echo base_url();
-                    echo '">Home <span class="sr-only">(current)</span></a></li>';
-                } ?>
+                    echo '">Home</a></li>';
+                } else { ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url(); ?>posts">Posts</a>
                 </li>
@@ -35,14 +34,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url(); ?>links">Show links</a>
                 </li>
+            <?php }?>
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 <?php
-                if ((isset($_SESSION['active']) ? $_SESSION['active'] : false) === true) {
+                if ((isset($_SESSION['userId']) ? $_SESSION['userId'] : 0) > 0) {
                     echo ' <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">hello, ' . $_SESSION['username'] . '</a>
     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-      <a class="dropdown-item" href="#">Profile</a>
+      <a class="dropdown-item" href="'. base_url().'profile">Profile</a>
       <a class="dropdown-item" href="#">Help</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="' . base_url() . '">Logout</a>

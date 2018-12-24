@@ -10,6 +10,9 @@ class Posts extends  CI_Controller {
     public function index() {
         session_start();
         $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        if ($userId === 0) {
+            show_404();
+        }
 
         $this->M_Deamon->updateNews($userId);
 
@@ -40,6 +43,9 @@ class Posts extends  CI_Controller {
     public function viewSource($urlId) {
         session_start();
         $userId    = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+        if ($userId === 0) {
+            show_404();
+        }
 
         $this->M_Deamon->updateNews($userId);
 

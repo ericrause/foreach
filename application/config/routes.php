@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$route['profile']           = 'Pages/showProfile';
 $route['Signup']            = 'Auth/showSignUp';
 $route['login']             = 'Auth/showLogin';
 $route['logout']            = 'Auth/logout';
