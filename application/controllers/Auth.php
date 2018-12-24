@@ -38,10 +38,16 @@ class Auth extends CI_Controller {
 
         $authId   = $this->M_Auth->authenticate($email, $password);
         if($authId > 0) {
+
+            $userData = $this->M_Profile->getProfile($authId);
+            $userData['style']    = $this->M_Profile->getTemplate($userData['template']);
             $_SESSION['active']   = true;
             $_SESSION['timeout']  = time();
             $_SESSION['username'] = $email;
             $_SESSION['userId']   = $authId;
+            $_SESSION['template'] = $userData['style']['title'];
+
+
             redirect('posts');
         } else {
             $this->showLogin('incorret email/pass','danger');

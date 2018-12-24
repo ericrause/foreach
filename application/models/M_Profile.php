@@ -10,14 +10,15 @@ class M_Profile extends CI_Model {
     public function __construct() {
 //        $this->load->database();
     }
-    public function getProfile() {
-        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
+    public function getProfile($userId) {
+//        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
         $this->db->where('userId', $userId);
         $query = $this->db->get('profiles');
-        return $query->result_array();
+        return $query->row_array();
     }
 
     public function getTemplate($id) {
+        $this->db->select('id, title');
         $this->db->where('id', $id);
         $query = $this->db->get('templates');
         return $query->row_array();
@@ -36,11 +37,16 @@ class M_Profile extends CI_Model {
         return true;
     }
 
-    public function record_count($userId) {
+    public function updateProfile($userId,$password,$phone,$themeSelector,$name,$biography) {
         $this->db->where('userId', $userId);
-
-        return $this->db->count_all('posts');
-
+        $data = [
+//            'password'      => $password,
+            'phone'     => $phone,
+            'template'  => $themeSelector,
+            'name'      => $name,
+            'biography' => $biography
+        ];
+        $this->db->update('profiles', $data);
     }
 
 }
